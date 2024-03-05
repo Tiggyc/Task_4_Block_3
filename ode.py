@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from scipy.intergrate import odeint
+from scipy.integrate import odeint
 import numpy as np
 
 def grad(xy, t, alpha, beta, gamma, delta):
@@ -16,9 +16,9 @@ def grad(xy, t, alpha, beta, gamma, delta):
     Outputs:
             the gradient of the predator prey model
     '''
-    dx/dt = (alpha*xy[0])-(beta*xy[0]*xy[1])
-    dy/dt = (delta*xy[0]*xy[1])-(gamma*xy[1])
-    grad = [dx/dt, dy/dt]
+    dxdt = (alpha*xy[0])-(beta*xy[0]*xy[1])
+    dydt = (delta*xy[0]*xy[1])-(gamma*xy[1])
+    grad = [dxdt, dypdt]
 
     return grad
 
@@ -27,5 +27,14 @@ def solve_equations(xy0, t_max, alpha, beta, gamma, delta):
     Solves the Lotka-Volterra model
     '''
     t = np.linespace(0, t_max)
-    Lotka-Volterra = odeint(grad, xy0, t, (alpha, beta, gamma, delta))
-    return Lotka-Volterra, t
+    LotkaVolterra = odeint(grad, xy0, t, (alpha, beta, gamma, delta))
+    return LotkaVolterra, t
+
+
+def plot_lv(t, data):
+    fig = plt.figure()
+    ax1 = fig.add_subplot(211)
+    ax1.plot(t, data[:,0], label = 'X(t)')
+    ax2 = fig.add_subplot(212)
+    ax2.plot(t, data[:,1], label = 'Y(t)')
+    plt.show()
