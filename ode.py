@@ -19,11 +19,8 @@ def grad(xy, t, alpha, beta, gamma, delta):
     '''
     dxdt = (alpha*xy[0])-(beta*xy[0]*xy[1])
     dydt = (delta*xy[0]*xy[1])-(gamma*xy[1])
-<<<<<<< HEAD
     grad = [dxdt, dydt]
-=======
     grad = [dxdt, dypdt]
->>>>>>> f7cc714b221cd524c0479066e7616be97da8ab7b
 
     return grad
 
@@ -32,9 +29,16 @@ def solve_equations(xy0, t_max, alpha, beta, gamma, delta):
     Solves the Lotka-Volterra model
     '''
     t = np.linespace(0, t_max)
-<<<<<<< HEAD
     lotkavolterra = odeint(grad, xy0, t, (alpha, beta, gamma, delta))
     return lotkavolterra, t
+
+def plot_lv(t, data):
+    fig = plt.figure()
+    ax1 = fig.add_subplot(211)
+    ax1.plot(t, data[:,0], label = 'X(t)')
+    ax2 = fig.add_subplot(212)
+    ax2.plot(t, data[:,1], label = 'Y(t)')
+    plt.show()
 
 
 parser = argparse.ArgumentParser(description='lotka volterra system')
@@ -52,16 +56,6 @@ beta = args.beta
 delta = args.delta
 gamma = args.gamma
 save_plot = args.save_plot 
-=======
-    LotkaVolterra = odeint(grad, xy0, t, (alpha, beta, gamma, delta))
-    return LotkaVolterra, t
 
 
-def plot_lv(t, data):
-    fig = plt.figure()
-    ax1 = fig.add_subplot(211)
-    ax1.plot(t, data[:,0], label = 'X(t)')
-    ax2 = fig.add_subplot(212)
-    ax2.plot(t, data[:,1], label = 'Y(t)')
-    plt.show()
->>>>>>> f7cc714b221cd524c0479066e7616be97da8ab7b
+
