@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-from scipy.intergrate import odeint
+from scipy.integrate import odeint
 import numpy as np
+import argparse
 
 def grad(xy, t, alpha, beta, gamma, delta):
     '''
@@ -16,9 +17,9 @@ def grad(xy, t, alpha, beta, gamma, delta):
     Outputs:
             the gradient of the predator prey model
     '''
-    dx/dt = (alpha*xy[0])-(beta*xy[0]*xy[1])
-    dy/dt = (delta*xy[0]*xy[1])-(gamma*xy[1])
-    grad = [dx/dt, dy/dt]
+    dxdt = (alpha*xy[0])-(beta*xy[0]*xy[1])
+    dydt = (delta*xy[0]*xy[1])-(gamma*xy[1])
+    grad = [dxdt, dydt]
 
     return grad
 
@@ -27,5 +28,22 @@ def solve_equations(xy0, t_max, alpha, beta, gamma, delta):
     Solves the Lotka-Volterra model
     '''
     t = np.linespace(0, t_max)
-    Lotka-Volterra = odeint(grad, xy0, t, (alpha, beta, gamma, delta))
-    return Lotka-Volterra, t
+    lotkavolterra = odeint(grad, xy0, t, (alpha, beta, gamma, delta))
+    return lotkavolterra, t
+
+
+parser = argparse.ArgumentParser(description='lotka volterra system')
+parser.add_argument('--initial', action='store_true')
+parser.add_argument('--alpha', action='store_true')
+parser.add_argument('--beta', action='store_true')
+parser.add_argument('--delta', action='store_true')
+parser.add_argument('--gamma', action='store_true')
+parser.add_argument('--save_plot')
+
+args = parser.parse_args()
+initial = args.initial 
+alpha = args.alpha 
+beta = args.beta
+delta = args.delta
+gamma = args.gamma
+save_plot = args.save_plot 
