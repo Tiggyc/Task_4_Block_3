@@ -20,7 +20,7 @@ def grad(xy, t, alpha, beta, gamma, delta):
     dxdt = (alpha*xy[0])-(beta*xy[0]*xy[1])
     dydt = (delta*xy[0]*xy[1])-(gamma*xy[1])
     grad = [dxdt, dydt]
-    grad = [dxdt, dypdt]
+    grad = [dxdt, dydt]
 
     return grad
 
@@ -40,7 +40,29 @@ def plot_lv(t, data):
     ax2.plot(t, data[:,1], label = 'Y(t)')
     plt.show()
 
+def main():
+    if len(args) < 2:
+        print("Error: Please provide input file paths.")
+        return
+    
+    output = ""
+    for files in args[1:]:
+        sequence = read_file(files)
+        output += f"Sequence from file: {files}\n"
 
+def initial(): 
+    
+
+def alpha():
+
+def beta():
+
+def delta():
+
+def gamma():
+    
+def save_plot():
+    
 parser = argparse.ArgumentParser(description='lotka volterra system')
 parser.add_argument('--initial', action='store_true')
 parser.add_argument('--alpha', action='store_true')
