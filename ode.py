@@ -49,19 +49,6 @@ def main():
     for files in args[1:]:
         sequence = read_file(files)
         output += f"Sequence from file: {files}\n"
-
-def initial(): 
-    
-
-def alpha():
-
-def beta():
-
-def delta():
-
-def gamma():
-    
-def save_plot():
     
 parser = argparse.ArgumentParser(description='lotka volterra system')
 parser.add_argument('--initial', action='store_true')
